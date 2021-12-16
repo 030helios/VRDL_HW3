@@ -73,7 +73,7 @@ if __name__ == "__main__":
         masks = torch.cat([masks1, masks2], dim=0).to('cpu')
 
         # Record predictions
-        nms_idx = batched_nms(boxes, scores, classes, 0.5)
+        nms_idx = batched_nms(boxes, scores, classes, 0.4)
         for idx in nms_idx:
             pred = {}
             pred['image_id'] = imgid

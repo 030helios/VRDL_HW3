@@ -41,23 +41,17 @@ def mapper(dataset_dict):
 
     # Transformations I use
     rApply = T.RandomApply
-    rBright = T.RandomBrightness
-    rCrop = T.RandomCrop_CategoryAreaConstraint
     rFlip = T.RandomFlip
-    rContrast = T.RandomContrast
-    rSaturation = T.RandomSaturation
     rRotate = T.RandomRotation
     Resize = T.ResizeShortestEdge
 
     # My Data Augmentation
     image, transforms = T.apply_transform_gens([
-        rApply(rCrop(crop_type="relative_range", crop_size=(0.5, 0.5)),
-               prob=0.50),
         rFlip(prob=0.5, horizontal=True, vertical=False),
         Resize((500, 800), 800, "range"),
-        rApply(rRotate(angle=[90, 180, 270], expand=False, center=None,
-                       sample_style="choice", interp=None),
-               prob=0.75),
+        rApply(rRotate(angle=[90, 180], expand=False, center=None,
+                       sample_style="range", interp=None),
+               prob=0.2),
     ], image)
 
     CHWimage = image.transpose(2, 0, 1).astype("float32")
