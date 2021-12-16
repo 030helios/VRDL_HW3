@@ -19,5 +19,5 @@ To reproduce my submission without retraining, do the following steps:
 3. run inference.py
 
 ## Training
-run train_images/tococo.py
-run train.py
+1. run train_images/tococo.py
+2. run train.py
